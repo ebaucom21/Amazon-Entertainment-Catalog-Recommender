@@ -9,9 +9,12 @@ class balancedKD {
         class Node {
             public:
                 Node *left, *right;
+                string name;
                 vector<string> data;
                 Node(vector<string> a) {
                     left = right = nullptr;
+                    name = a[0]; // Assuming the first element is the name
+                    a.erase(a.begin()); // Remove the name from the data vector
                     data = a;
                 }
         };
