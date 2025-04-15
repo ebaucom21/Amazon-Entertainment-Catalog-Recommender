@@ -13,7 +13,14 @@ class balancedKD {
         }
         // Finds the nearest K neighbors to a given vector
         // TODO: Describe the target vector
-        // 
+        // Vector contains - 
+        /* 
+        0 - Type
+        1 - Actor/Directors
+        2 - Rating
+        3 - duration
+        4 - Genre
+        */
         // TODO: Refactor to use a vector of vectors of strings
         vector<string> findNearestNeighbors(vector<string> target, int k) {
             priority_queue<Neighbor> result;
@@ -29,8 +36,7 @@ class balancedKD {
 
 
     private:
-        class Node {
-            public:
+        class Node {            public:
                 Node *left, *right;
                 vector<string> data;
                 Node(vector<string> a) {
