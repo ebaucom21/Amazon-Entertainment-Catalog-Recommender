@@ -7,13 +7,17 @@ class balancedKD {
     public:
         Node* head;
         // Constructor to create a balanced KD tree from the given data as a vector of vectors of strings
+        // TODO: Refactor for a 3D vector of vectors of strings
         balancedKD(vector<vector<string>> data) {
             head = buildKDTree(data, 0, data.size() - 1, 0);
         }
         // Finds the nearest K neighbors to a given vector
+        // TODO: Describe the target vector
+        // 
+        // TODO: Refactor to use a vector of vectors of strings
         vector<string> findNearestNeighbors(vector<string> target, int k) {
             priority_queue<Neighbor> result;
-            findNearestNeighbor(head, target, result, k, 0);
+            findNearestNeighborsHelper(head, target, result, k, 0);
             // Turn the queue into a vector and return it
             vector<string> neighbors;
             while (!result.empty()) {
@@ -69,7 +73,10 @@ class balancedKD {
 
         // Function to find the nearest k neighbors recursively
         // If the target has "None" as a value then search both subtrees
-        void findNearestNeighbor(Node* node, vector<string> target, priority_queue<Neighbor>& result, int k, int depth) {
+        // TODO: Describe the target vector
+
+    
+        void findNearestNeighborsHelper(Node* node, vector<string> target, priority_queue<Neighbor>& result, int k, int depth) {
             if (node == nullptr) return;
 
             // Calculate the distance between the current node and the target
