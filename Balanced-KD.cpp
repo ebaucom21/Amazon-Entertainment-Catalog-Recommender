@@ -1,42 +1,59 @@
 #include <vector>
 #include <queue>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 class balancedKD {
     public:
+        class Node {
+            public:
+                Node *left, *right;
+                string name;
+                vector<string> data;
+                Node(vector<string> a) {
+                    left = right = nullptr;
+                    name = a[0]; // Assuming the first element is the name
+                    a.erase(a.begin()); // Remove the name from the data vector
+                    data = a;
+                }
+        };
+
         Node* head;
         // Constructor to create a balanced KD tree from the given data as a vector of vectors of strings
+        // TODO: Refactor for a 3D vector of vectors of strings
         balancedKD(vector<vector<string>> data) {
             head = buildKDTree(data, 0, data.size() - 1, 0);
         }
+        
         // Finds the nearest K neighbors to a given vector
+        // TODO: Describe the target vector
+        // Vector contains - 
+        /* 
+        0 - Type
+        1 - Actor/Directors
+        2 - Rating
+        3 - duration
+        4 - Genre
+        */
+        // TODO: Refactor to use a vector of vectors of strings
         vector<string> findNearestNeighbors(vector<string> target, int k) {
             priority_queue<Neighbor> result;
-            findNearestNeighbor(head, target, result, k, 0);
+            findNearestNeighborsHelper(head, target, result, k, 0);
             // Turn the queue into a vector and return it
             vector<string> neighbors;
             while (!result.empty()) {
-                neighbors.push_back(result.front().data);
+                neighbors.push_back(result.top().name);
                 result.pop();
             }
             return neighbors;
         }
 
-
     private:
-        class Node {
-            public:
-                Node *left, *right;
-                vector<string> data;
-                Node(vector<string> a) {
-                    left = right = nullptr;
-                    data = a;
-                }
-        };
 
         struct Neighbor {
             int distance;
+            string name;
             vector<string> data;
         
             // Custom comparison for max priority queue based on Task priority
@@ -46,7 +63,7 @@ class balancedKD {
         };
 
         // Function to build the KD tree recursively from a vector of vectors of strings
-        Node* buildKDTree(vector<vector<string>> data&, int start, int end, int depth) {
+        Node* buildKDTree(vector<vector<string>>& data, int start, int end, int depth) {
             if (data.empty()) return nullptr;
             int k = data[0].size(); // Number of dimensions
             int axis = depth % k; // Current axis to split on
@@ -69,7 +86,10 @@ class balancedKD {
 
         // Function to find the nearest k neighbors recursively
         // If the target has "None" as a value then search both subtrees
-        void findNearestNeighbor(Node* node, vector<string> target, priority_queue<Neighbor>& result, int k, int depth) {
+        // TODO: Describe the target vector
+
+    
+        void findNearestNeighborsHelper(Node* node, vector<string> target, priority_queue<Neighbor>& result, int k, int depth) {
             if (node == nullptr) return;
 
             // Calculate the distance between the current node and the target
@@ -98,13 +118,13 @@ class balancedKD {
             Node* otherNode = (nextNode == node->left) ? node->right : node->left;
 
             // Search the next node
-            findNearestNeighbor(nextNode, target, result, k, depth + 1);
+            findNearestNeighborsHelper(nextNode, target, result, k, depth + 1);
 
             // Check if we need to search the other side of the tree
             if ((result.size() < k || abs(stoi(node->data[axis]) - stoi(target[axis])) < result.top().distance) || target[axis] == "None") {
                 // Search the other node if the distance is less than the current farthest neighbor
                 // or if the target has "None" as a value
-                findNearestNeighbor(otherNode, target, result, k, depth + 1);
+                findNearestNeighborsHelper(otherNode, target, result, k, depth + 1);
             }
         }
-}
+};
