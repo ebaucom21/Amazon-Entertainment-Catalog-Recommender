@@ -50,7 +50,17 @@ class balancedKD {
 
         // Destructor to clean up the KD tree
         ~balancedKD() {
-            // TODO: Implement a destructor to free the memory used by the KD tree
+            queue<Node*> nodes;
+            nodes.push(head);
+            while (!nodes.empty()) {
+                Node* current = nodes.front();
+                nodes.pop();
+                if (current) {
+                    if (current->left != nullptr) nodes.push(current->left);
+                    if (current->right != nullptr) nodes.push(current->right);
+                    delete current;
+                }
+            }
         }
 
     private:
