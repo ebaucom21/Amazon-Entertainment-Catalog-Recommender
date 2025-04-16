@@ -81,15 +81,22 @@ class csvExtraction {
                 string cell = line.substr(lastPos + 1, pos - lastPos - 1);
                 int lastPos2 = 0;
                 int pos2 = 0;
+                pos2 = cell.find(',', lastPos2 + 1);
+                string curInd = cell.substr(lastPos2, pos2 - lastPos2);
+                cells.push_back(curInd);
+                lastPos2 = pos2 + 1;
                 while (cell.find(',', lastPos2+1) != string::npos) {
                     pos2 = cell.find(',', lastPos2 + 1);
-                    string curInd = cell.substr(lastPos2, pos2 - lastPos2);
+                    // Remove the space at the start of these
+                    string curInd = cell.substr(lastPos2+1, pos2 - lastPos2-1);
                     cells.push_back(curInd);
                     lastPos2 = pos2 + 1;
                 }
-                string curInd = cell.substr(lastPos2, cell.size() - lastPos2);
-                cells.push_back(curInd);
-                lastPos = pos + 1;
+                if (lastPos2 < cell.size()) {
+                    curInd = cell.substr(lastPos2+1, cell.size() - lastPos2-1);
+                    cells.push_back(curInd);
+                    lastPos = pos + 1;
+                }
             } else {
                 // If the cell is not in quotes, find the next comma
                 size_t pos = line.find(',', lastPos + 1);
