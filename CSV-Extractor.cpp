@@ -33,6 +33,7 @@ class csvExtraction {
                 return result;
             }
             while (getline(file, line)) {
+                if (line[0] != 's') continue; // Skip the line if it doesn't start with a show_id
                 vector<vector<string>> row(6); // 6 columns
                 string cell;
                 size_t pos = 0;
