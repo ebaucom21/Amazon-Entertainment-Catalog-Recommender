@@ -70,5 +70,5 @@ int main() {
         std::cout << "\n\n";
     }
     
-    return 1;
+    return 0;
 }
