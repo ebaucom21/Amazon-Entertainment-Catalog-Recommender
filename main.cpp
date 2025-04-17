@@ -944,14 +944,22 @@ int show_window(int num_recs,string genre) {
 int Results_window(int num_recs, vector<string> info) {
     int width = 1600;
     int height = 900;
-    string KD_results[num_recs] = {};
 
-    vector<vector<vector<string>>> data;
-    data = csvExtraction().extractData();
-    balancedKD kdTree(data);
-     neighbors = kdTree.findNearestNeighbors(info, num_recs);
+    cout <<"working before KD tree" << endl;
+    for (size_t i = 0; i < info.size(); ++i) {
+        std::cout << (i + 1) << ". " << info[i] << std::endl;
+    }
+
+
+    // vector<vector<vector<string>>> data;
+    // data = csvExtraction().extractData();
+    // balancedKD kdTree(data);
+    // vector<string> neighbors = kdTree.findNearestNeighbors(info, num_recs);
+    // vector<string> KD_results = kdTree.findNearestNeighbors(info, num_recs);
 
     sf::RenderWindow window(sf::VideoMode(width, height), "Amazon Catalog Recommender", sf::Style::Close);
+
+    cout << "working after KD tree" << endl;
 
     sf::Font font;
     if (!font.loadFromFile("../files/AmazonEmber_Rg.ttf")) {
@@ -993,7 +1001,7 @@ int Results_window(int num_recs, vector<string> info) {
 
     for (int i = 0; i < num_recs; ++i) {
         // Wrap KD text manually
-        std::istringstream iss(KD_results[i]); //add KD_results[i] later when ready
+        std::istringstream iss("placeholder"); //add KD_results[i] later when ready
         std::string word, currentLine;
         std::vector<std::string> wrappedKD;
 

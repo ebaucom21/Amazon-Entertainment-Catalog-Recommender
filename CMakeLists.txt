@@ -21,8 +21,9 @@ add_executable(Amazon-Entertainment-Catalog-Recommender
 )
 ##testing purposes only
 add_executable(Tester
-        main.cpp
         Balanced-KD.cpp
+        CSV-Extractor.cpp
+        KD-Tester.cpp
 )
 
 target_link_libraries(Amazon-Entertainment-Catalog-Recommender sfml-system sfml-window sfml-graphics sfml-audio)
