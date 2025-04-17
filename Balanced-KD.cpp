@@ -108,14 +108,20 @@ class balancedKD {
         // If the target has "None" as a value then search both subtrees    
         void findNearestNeighborsHelper(Node* node, vector<vector<string>> target, priority_queue<Neighbor>& result, int k, int depth) {
             if (node == nullptr) return;
-
+            // Weights vector
+            vector<int> weights(5);
+            weights[0] = 30; // Type
+            weights[1] = 70;// Actor/Directors
+            weights[2] = 200; // Rating
+            weights[3] = 30; // Duration
+            weights[4] = 50; // Genre
             // Calculate the distance between the current node and the target
             int distance = 0;
             for (int i = 0; i < target.size(); ++i) {
                 for (int j = 0; j<target[i].size(); j++) {
                     if (target[i][j] != "None") {
-                        if (j > node->data[i].size() || node->data[i][j] != target[i][j]) {
-                            distance++;
+                        if (j > node->data[i].size() || find(node->data[i].begin(),node->data[i].end(), target[i][j]) == node->data[i].end()) {
+                            distance+= weights[i]; // Add the weight of the dimension if the target is not found in the node's data
                         }
                     }
                 }
