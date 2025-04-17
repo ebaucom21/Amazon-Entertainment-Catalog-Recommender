@@ -21,7 +21,6 @@ class balancedKD {
 
         Node* head;
         // Constructor to create a balanced KD tree from the given data as a vector of vectors of strings
-        // TODO: Refactor for a 3D vector of vectors of strings
         balancedKD(vector<vector<vector<string>>> data) {
             head = buildKDTree(data, 0, data.size() - 1, 0);
         }
@@ -35,7 +34,14 @@ class balancedKD {
         3 - duration
         4 - Genre
         */
-        // TODO: Refactor to use a vector of vectors of strings
+        vector<string> findNearestNeighborsHelper(vector<string> target, int k) {
+            vector<vector<string>> targetData(target.size(), vector<string>(1));
+            for (int i = 0; i < target.size(); ++i) {
+                targetData[i][0] = target[i]; // Assuming the first element is the name
+            }
+            return findNearestNeighbors(targetData, k);
+        }
+
         vector<string> findNearestNeighbors(vector<vector<string>> target, int k) {
             priority_queue<Neighbor> result;
             findNearestNeighborsHelper(head, target, result, k, 0);
