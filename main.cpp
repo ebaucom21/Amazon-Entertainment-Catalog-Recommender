@@ -13,6 +13,10 @@ int movie_window(int num_recs,string genre);
 int show_window(int num_recs,string genre);
 int Results_window(int num_recs, vector<string> info);
 
+vector<vector<vector<string>>> global_data;
+balancedKD* global_kdTree = nullptr;
+
+
 void setText(sf::Text &text, float x, float y){
     sf::FloatRect textRect = text.getLocalBounds();
     text.setOrigin(textRect.left + textRect.width/2.0f,
@@ -942,10 +946,11 @@ int show_window(int num_recs,string genre) {
 
 
 int Results_window(int num_recs, vector<string> info) {
+    cout << "[Results] Entered Results_window()" << endl;
     int width = 1600;
     int height = 900;
 
-    cout <<"working before KD tree" << endl;
+    //cout <<"working before KD tree" << endl;
     for (size_t i = 0; i < info.size(); ++i) {
         std::cout << (i + 1) << ". " << info[i] << std::endl;
     }
@@ -953,13 +958,22 @@ int Results_window(int num_recs, vector<string> info) {
 //stack overflow
     // vector<vector<vector<string>>> data;
     // data = csvExtraction().extractData();
+    // cout << "[Results] CSV extracted" << endl;
     // balancedKD kdTree(data);
-    // vector<string> neighbors = kdTree.findNearestNeighbors(info, num_recs);
+    // cout << "[Results] KD tree built" << endl;
+    // // vector<string> neighbors = kdTree.findNearestNeighbors(info, num_recs);
     // vector<string> KD_results = kdTree.findNearestNeighbors(info, num_recs);
+    // cout << "[Results] Got KD recommendations" << endl;
+    vector<string> KD_results = global_kdTree->findNearestNeighbors(info, num_recs);
+
 
     sf::RenderWindow window(sf::VideoMode(width, height), "Amazon Catalog Recommender", sf::Style::Close);
+    cout << "[Results] SFML window created" << endl;
 
-    cout << "working after KD tree" << endl;
+
+    for (size_t i = 0; i < info.size(); ++i) {
+        std::cout << (i + 1) << ". " << info[i] << std::endl;
+    }
 
     sf::Font font;
     if (!font.loadFromFile("../files/AmazonEmber_Rg.ttf")) {
@@ -1001,7 +1015,9 @@ int Results_window(int num_recs, vector<string> info) {
 
     for (int i = 0; i < num_recs; ++i) {
         // Wrap KD text manually
-        std::istringstream iss("placeholder"); //add KD_results[i] later when ready
+        std::cout << "KD_results[" << i << "]: " << KD_results[i] << std::endl;
+
+        std::istringstream iss(KD_results[i]); //add KD_results[i] later when ready
         std::string word, currentLine;
         std::vector<std::string> wrappedKD;
 
@@ -1130,5 +1146,16 @@ int Results_window(int num_recs, vector<string> info) {
 
 
 int main() {
-    welcome_window();
+
+    std::cout << "[Init] Loading CSV data...\n";
+    global_data = csvExtraction().extractData();
+    std::cout << "[Init] Data loaded: " << global_data.size() << " entries\n";
+
+    std::cout << "[Init] Building KD tree...\n";
+    global_kdTree = new balancedKD(global_data);
+    std::cout << "[Init] KD tree built.\n";
+
+    welcome_window(); // everything starts here
+    delete global_kdTree;
+
 }

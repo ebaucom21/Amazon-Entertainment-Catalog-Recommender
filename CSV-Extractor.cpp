@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <filesystem>
+#include <iostream>
 
 using namespace std;
 
@@ -17,7 +19,7 @@ class csvExtraction {
         5 - Genre
         */
         vector<vector<vector<string>>> extractData() {
-            return extractDataHelper("amazon_prime_titles.csv");
+            return extractDataHelper("../amazon_prime_titles.csv");
         }
     private:
         vector<vector<vector<string>>> extractDataHelper(const string& filename) {
@@ -25,6 +27,13 @@ class csvExtraction {
             // Only take the data I need
             vector<vector<vector<string>>> result;
             ifstream file(filename);
+            if (!file.is_open()) {
+                cerr << "Error: Could not open file: " << filename << endl;
+                cerr << "Working directory is: " << std::filesystem::current_path() << endl;
+                return {};
+            }
+
+
             string line;
             string header;
             getline(file,header); // Read the header line

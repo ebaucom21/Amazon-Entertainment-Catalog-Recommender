@@ -51,21 +51,21 @@ build cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
 
 build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/main.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
   DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -isystem "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
 
 build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/Balanced-KD.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
   DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\Balanced-KD.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -isystem "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
 
 build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/CSV-Extractor.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
   DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\CSV-Extractor.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -isystem "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
@@ -99,19 +99,19 @@ build cmake_object_order_depends_target_Tester: phony || .
 
 build CMakeFiles/Tester.dir/Balanced-KD.cpp.obj: CXX_COMPILER__Tester_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/Balanced-KD.cpp || cmake_object_order_depends_target_Tester
   DEP_FILE = CMakeFiles\Tester.dir\Balanced-KD.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Tester.dir
   OBJECT_FILE_DIR = CMakeFiles\Tester.dir
 
 build CMakeFiles/Tester.dir/CSV-Extractor.cpp.obj: CXX_COMPILER__Tester_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/CSV-Extractor.cpp || cmake_object_order_depends_target_Tester
   DEP_FILE = CMakeFiles\Tester.dir\CSV-Extractor.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Tester.dir
   OBJECT_FILE_DIR = CMakeFiles\Tester.dir
 
 build CMakeFiles/Tester.dir/KD-Tester.cpp.obj: CXX_COMPILER__Tester_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/KD-Tester.cpp || cmake_object_order_depends_target_Tester
   DEP_FILE = CMakeFiles\Tester.dir\KD-Tester.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Tester.dir
   OBJECT_FILE_DIR = CMakeFiles\Tester.dir
 
