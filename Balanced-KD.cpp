@@ -37,7 +37,7 @@ class balancedKD {
         vector<string> findNearestNeighbors(vector<string> target, int k) {
             vector<vector<string>> targetData(target.size(), vector<string>(1));
             for (int i = 0; i < target.size(); ++i) {
-                targetData[i][0] = target[i]; // Assuming the first element is the name
+                targetData[i][0] = target[i]; // Change to 2D vector for the real function
             }
             return findNearestNeighbors(targetData, k);
         }
