@@ -51,6 +51,9 @@ class balancedKD {
                 neighbors.push_back(result.top().name);
                 result.pop();
             }
+            while (neighbors.size() < k) {
+                neighbors.push_back("No results found"); // Fill with "No results found" if less than k neighbors found
+            }
             return neighbors;
         }
 
@@ -78,7 +81,7 @@ class balancedKD {
         
             // Custom comparison for max priority queue based on Task priority
             bool operator<(const Neighbor& other) const {
-                return distance > other.distance; // For max heap, we want the largest distance at the top
+                return distance < other.distance; // For max heap, we want the largest distance at the top
             }
         };
 
@@ -110,8 +113,8 @@ class balancedKD {
             if (node == nullptr) return;
             // Weights vector
             vector<int> weights(5);
-            weights[0] = 30; // Type
-            weights[1] = 70;// Actor/Directors
+            weights[0] = 300; // Type
+            weights[1] = 10000;// Actor/Directors
             weights[2] = 200; // Rating
             weights[3] = 30; // Duration
             weights[4] = 50; // Genre
@@ -130,7 +133,7 @@ class balancedKD {
             // Add the current node to the result if it is a valid neighbor
             Neighbor neighbor;
             neighbor.distance = distance;
-            neighbor.name = node->name;
+            neighbor.name = (node->name);
             neighbor.data = node->data;
             result.push(neighbor);
 
@@ -147,7 +150,7 @@ class balancedKD {
             findNearestNeighborsHelper(nextNode, target, result, k, depth + 1);
 
             // Check if we need to search the other side of the tree
-            if ((result.size() < k || distance < result.top().distance) || target[axis][0] == "None") {
+            if ((result.size() < k || distance < result.top().distance+300) || target[axis][0] == "None") {
                 // Search the other node if the distance is less than the current farthest neighbor
                 // or if the target has "None" as a value
                 findNearestNeighborsHelper(otherNode, target, result, k, depth + 1);
