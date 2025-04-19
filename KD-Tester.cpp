@@ -26,12 +26,11 @@ int main() {
     balancedKD kdTree(data);
     cout << "KD tree created successfully.\n";
     vector<vector<string>> target = {
-        {"Movie"}, // Title
-        {"None"}, // Type
+        {"Movie"}, // Type
         {"None"}, // Actor/Directors
         {"None"}, // Rating
-        {"None"}, // Duration
-        {"None"}  // Genre
+        {"1-1.5hrs"}, // Duration
+        {"Drama"}  // Genre
     };
     // Find the nearest neighbors for the target vector
     cout << "Finding nearest neighbors...\n";
