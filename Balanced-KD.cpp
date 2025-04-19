@@ -92,7 +92,7 @@ class balancedKD {
             int axis = depth % k; // Current axis to split on
 
             // Sort the data based on the current axis
-            sort(data.begin() + start, data.begin() + end + 1, [axis](const vector<vector<string>>& a, const vector<vector<string>>& b) {
+            sort(data.begin() + start, data.begin() + end, [axis](const vector<vector<string>>& a, const vector<vector<string>>& b) {
                 return a[axis][0] < b[axis][0];
             });
 
