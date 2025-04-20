@@ -338,6 +338,14 @@ public:
     return myRBT.searchTopK(k);
   }
 
+  //Constructor for ordered map needs the data and user recom in order to be made.
+  ordered_map(vector<vector<vector<string>>> data, vector<string> user){
+
+    makeRecomVector(data);
+    getRecomRating(user,data);
+    buildRedBlackTree();
+
+  }
 
 private:
 
@@ -368,7 +376,7 @@ private:
   void getRecomRating(vector<string> user, vector<vector<vector<string>>> shows){
 
     //For each user category
-    for(int i=1; i<user.size(); i++){
+    for(int i=0; i<user.size(); i++){
 
       //For each vector in a specific category
       for(int j=0; j<shows.size(); j++){
