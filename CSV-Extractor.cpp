@@ -1,8 +1,6 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <filesystem>
-#include <iostream>
 
 using namespace std;
 
@@ -19,7 +17,7 @@ class csvExtraction {
         5 - Genre
         */
         vector<vector<vector<string>>> extractData() {
-            return extractDataHelper("../amazon_prime_titles.csv");
+            return extractDataHelper("./amazon_prime_titles.csv");
         }
     private:
         vector<vector<vector<string>>> extractDataHelper(const string& filename) {
@@ -27,13 +25,6 @@ class csvExtraction {
             // Only take the data I need
             vector<vector<vector<string>>> result;
             ifstream file(filename);
-            if (!file.is_open()) {
-                cerr << "Error: Could not open file: " << filename << endl;
-                cerr << "Working directory is: " << std::filesystem::current_path() << endl;
-                return {};
-            }
-
-
             string line;
             string header;
             getline(file,header); // Read the header line
@@ -113,6 +104,41 @@ class csvExtraction {
                 cells.push_back(cell);
                 lastPos = pos;
             }
+
+            // Replacements that need to be checked
+            for (auto& cell : cells) {
+                if (cell == "Action") cell = "Action and adventure";
+                else if (cell == "Suspense") cell = "Mystery and thrillers";
+                else if (cell == "Science Fiction") cell = "Science fiction";
+                else if (cell == "UNRATED") cell = "18+";
+                else if (cell == "R") cell = "16+";
+                else if (cell == "PG-13") cell = "13+";
+                else if (cell == "PG") cell = "7+";
+                else if (cell == "NR") cell = "18+";
+                else if (cell == "NOT-RATE") cell = "18+";
+                else if (cell == "NC-17") cell = "16+";
+                else if (cell == "G") cell = "All";
+                else if (cell == "ALL") cell = "All";
+                else if (cell == "AGES_18_") cell = "18+";
+                else if (cell == "TV Show") cell = "Shows";
+                // TODO: Fix for time ranges
+                else if (cell.find("min") != string::npos) {
+                    cell = cell.substr(0, cell.find("min")-1);
+                    int temp = 0;
+                    try {
+                        temp = stoi(cell);
+                    } catch (const std::invalid_argument& e) {
+                        // Handle the case where conversion fails
+                        cell = "Unknown";
+                        continue;
+                    }
+                    if (temp < 60) cell = "<1hr";
+                    else if (temp <= 90) cell = "1-1.5hrs";
+                    else if (temp <= 120) cell = "1.5-2hrs";
+                    else cell = ">2hrs";
+                }
+            }
+
             return cells;
         }
 };
