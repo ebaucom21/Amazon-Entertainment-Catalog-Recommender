@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Amazon-Entertainment-Catalog-Recommender",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Amazon-Entertainment-Catalog-Recommender::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Amazon-Entertainment-Catalog-Recommender-Release-099745197ba213f089af.json",
+					"name" : "Amazon-Entertainment-Catalog-Recommender",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Tester::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Tester-Release-1d6e9aeac0f1430b5993.json",
+					"name" : "Tester",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-release",
+		"source" : "C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
