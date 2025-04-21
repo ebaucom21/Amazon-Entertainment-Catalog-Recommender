@@ -41,14 +41,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Amazon-Entertainment-Catalog-Recommender::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Amazon-Entertainment-Catalog-Recommender-Debug-1a7af68ff7a2955d7fdf.json",
+					"jsonFile" : "target-Amazon-Entertainment-Catalog-Recommender-Debug-cf7893000d0c7730b2cc.json",
 					"name" : "Amazon-Entertainment-Catalog-Recommender",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "Tester::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Tester-Debug-13b794e8040a66964d36.json",
+					"jsonFile" : "target-Tester-Debug-ea14e2380a6cbd6f4ac2.json",
 					"name" : "Tester",
 					"projectIndex" : 0
 				}

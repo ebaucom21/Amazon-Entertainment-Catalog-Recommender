@@ -8,16 +8,17 @@ project(Amazon-Entertainment-Catalog-Recommender)
 ## If you want to link SFML statically
 # set(SFML_STATIC_LIBRARIES TRUE)
 
-## In most cases better set in the CMake cache
-##                    ||
-##                    ||
-##CHANGE TARGET HERE  \/
+## CHANGE TARGET HERE
+##              ||
+##              ||
+##              \/
 set(SFML_DIR "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML")
 
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
 add_executable(Amazon-Entertainment-Catalog-Recommender
         main.cpp
         Balanced-KD.cpp
+        OrderedMap.cpp
         CSV-Extractor.cpp
 )
 ##testing purposes only

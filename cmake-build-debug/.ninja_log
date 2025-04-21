@@ -1,14 +1,12 @@
 # ninja log v6
-12	1368	7666523011416450	CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj	d025d0861c048bee
-2	378	7666535809235202	build.ninja	768fdd56f201b1d2
+5	1467	7666536072415801	CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj	d025d0861c048bee
+2	378	7669730836378616	build.ninja	768fdd56f201b1d2
 2	11	7664661439306912	clean	f1c0810b4f0350db
 14	457	7666515034782958	CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj	3f3e6338980308bb
-1368	1675	7666523024959839	Amazon-Entertainment-Catalog-Recommender.exe	a5e621220dea484e
+1468	1788	7666536087038905	Amazon-Entertainment-Catalog-Recommender.exe	a5e621220dea484e
 3	411	7664661443111084	CMakeFiles/Tester.dir/main.cpp.obj	cf446d2a881595cc
 954	1164	7666514777409643	Tester.exe	732b0d388f5752c8
 10	309	7666515034743869	CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj	d2894ecef906833f
 24	387	7666512151790313	CMakeFiles/Tester.dir/Balanced-KD.cpp.obj	f1c7f36ecb8dbea2
 5	440	7666514767924246	CMakeFiles/Tester.dir/CSV-Extractor.cpp.obj	dd6a26d6ffc599bd
 9	954	7666514767964245	CMakeFiles/Tester.dir/KD-Tester.cpp.obj	b495e1dd0e07284d
-5	1467	7666536072415801	CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj	d025d0861c048bee
-1468	1788	7666536087038905	Amazon-Entertainment-Catalog-Recommender.exe	a5e621220dea484e

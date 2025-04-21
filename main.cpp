@@ -1,20 +1,34 @@
+/*
+-------------------------------
+Main file to run entire project
+-------------------------------
+Includes all UX related tasks and integrates both data structures (KD-tree and B+ tree)
+to create fully complete project :)
+*/
+
+//include files
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <chrono>
 #include "Balanced-KD.cpp"
+#include "OrderedMap.cpp"
 #include "CSV-Extractor.cpp"
 using namespace std;
 
+//functions for each individual window
 int welcome_window();
 int question_window1();
 int movie_window(int num_recs,string genre);
 int show_window(int num_recs,string genre);
 int Results_window(int num_recs, vector<string> info);
 
+//global variables to be used in
 vector<vector<vector<string>>> global_data;
 balancedKD* global_kdTree = nullptr;
+ordered_map* global_BPlusTree = nullptr;
 
 
 void setText(sf::Text &text, float x, float y){
@@ -955,16 +969,20 @@ int Results_window(int num_recs, vector<string> info) {
         std::cout << (i + 1) << ". " << info[i] << std::endl;
     }
 
-//stack overflow
-    // vector<vector<vector<string>>> data;
-    // data = csvExtraction().extractData();
-    // cout << "[Results] CSV extracted" << endl;
-    // balancedKD kdTree(data);
-    // cout << "[Results] KD tree built" << endl;
-    // // vector<string> neighbors = kdTree.findNearestNeighbors(info, num_recs);
-    // vector<string> KD_results = kdTree.findNearestNeighbors(info, num_recs);
-    // cout << "[Results] Got KD recommendations" << endl;
+    auto kd_start = std::chrono::high_resolution_clock::now();
     vector<string> KD_results = global_kdTree->findNearestNeighbors(info, num_recs);
+    auto kd_end = std::chrono::high_resolution_clock::now();
+    auto KD_duration = std::chrono::duration_cast<std::chrono::nanoseconds>(kd_end - kd_start).count();
+    string KD_time_taken = to_string(KD_duration);
+
+    auto Bplus_start = std::chrono::high_resolution_clock::now();
+    std::cout << "[Init] Building B+ tree...\n";
+    global_BPlusTree = new ordered_map(global_data, info);
+    std::cout << "[Init] B+ tree built.\n";
+    vector<string> Bplus_results = global_BPlusTree->getTopKRecom(num_recs);
+    auto Bplus_end = std::chrono::high_resolution_clock::now();
+    auto Bplus_duration = chrono::duration_cast<std::chrono::nanoseconds>(Bplus_end - Bplus_start).count();
+    string Bplus_time_taken = to_string(Bplus_duration);
 
 
     sf::RenderWindow window(sf::VideoMode(width, height), "Amazon Catalog Recommender", sf::Style::Close);
@@ -1017,7 +1035,7 @@ int Results_window(int num_recs, vector<string> info) {
         // Wrap KD text manually
         std::cout << "KD_results[" << i << "]: " << KD_results[i] << std::endl;
 
-        std::istringstream iss(KD_results[i]); //add KD_results[i] later when ready
+        std::istringstream iss(KD_results[i]);
         std::string word, currentLine;
         std::vector<std::string> wrappedKD;
 
@@ -1046,8 +1064,9 @@ int Results_window(int num_recs, vector<string> info) {
         }
         kdY += itemSpacing;
 
+        std::cout << "Bplus_results[" << i << "]: " << Bplus_results[i] << std::endl;
         // Wrap B+ text manually
-        std::istringstream issB("Yoga Therapy For Back Pain, Neck Pain & Stress Relief - Lindsey Samper"); //add Bplus_results[i] later when finished
+        std::istringstream issB(Bplus_results[i]); //add Bplus_results[i] later when finished
         std::string wordB, currentLineB;
         std::vector<std::string> wrappedB;
 
@@ -1078,13 +1097,13 @@ int Results_window(int num_recs, vector<string> info) {
     }
 
     // Time labels
-    sf::Text kdTimeLabel("Time taken: 00:00", font, 30); //add KD_time_taken to placeholder
+    sf::Text kdTimeLabel("Time taken: " + KD_time_taken + "ns", font, 30); //add KD_time_taken to placeholder
     kdTimeLabel.setFillColor(sf::Color(255, 153, 0));
-    kdTimeLabel.setPosition(205, 830);
+    kdTimeLabel.setPosition(195, 830);
 
-    sf::Text bplusTimeLabel("Time taken: 00:00", font, 30); //add Bplus_time_taken to placeholder
+    sf::Text bplusTimeLabel("Time taken: " + Bplus_time_taken + "ns", font, 30); //add Bplus_time_taken to placeholder
     bplusTimeLabel.setFillColor(sf::Color(255, 153, 0));
-    bplusTimeLabel.setPosition(1130, 830);
+    bplusTimeLabel.setPosition(1120, 830);
 
     // Oval Start Over button using CircleShape
     sf::CircleShape startOverButton(60);  // radius = 60 (will be stretched)
@@ -1155,7 +1174,9 @@ int main() {
     global_kdTree = new balancedKD(global_data);
     std::cout << "[Init] KD tree built.\n";
 
+
     welcome_window(); // everything starts here
     delete global_kdTree;
+    delete global_BPlusTree;
 
 }

@@ -63,6 +63,13 @@ build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.ob
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
 
+build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/OrderedMap.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/OrderedMap.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
+  DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\OrderedMap.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -isystem "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
+  OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
+
 build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Debug C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/CSV-Extractor.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
   DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\CSV-Extractor.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
@@ -78,8 +85,9 @@ build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.
 #############################################
 # Link the executable Amazon-Entertainment-Catalog-Recommender.exe
 
-build Amazon-Entertainment-Catalog-Recommender.exe: CXX_EXECUTABLE_LINKER__Amazon-Entertainment-Catalog-Recommender_Debug CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj | C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system-d.a
+build Amazon-Entertainment-Catalog-Recommender.exe: CXX_EXECUTABLE_LINKER__Amazon-Entertainment-Catalog-Recommender_Debug CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/OrderedMap.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj | C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window-d.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system-d.a
   FLAGS = -g
+  LINK_FLAGS = -Wl,--stack,16777216
   LINK_LIBRARIES = "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics-d.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio-d.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window-d.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system-d.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   POST_BUILD = cd .
@@ -125,6 +133,7 @@ build CMakeFiles/Tester.dir/KD-Tester.cpp.obj: CXX_COMPILER__Tester_unscanned_De
 
 build Tester.exe: CXX_EXECUTABLE_LINKER__Tester_Debug CMakeFiles/Tester.dir/Balanced-KD.cpp.obj CMakeFiles/Tester.dir/CSV-Extractor.cpp.obj CMakeFiles/Tester.dir/KD-Tester.cpp.obj
   FLAGS = -g
+  LINK_FLAGS = -Wl,--stack,16777216
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Tester.dir
   POST_BUILD = cd .
