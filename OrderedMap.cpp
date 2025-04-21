@@ -4,8 +4,6 @@
 #include<utility>
 #include<algorithm>
 
-
-
 using namespace std;
 
 class ordered_map {
@@ -14,321 +12,225 @@ public:
   class Node{
   public:
 
-    Node *left, *right, *parent, *grandparent, *uncle;
-
+    Node *left, *right, *parent;
 
     bool color; // True is red, false is Black
     string name;
     int rank;
 
-    // A node will contain the its left, right, parent, uncle and grandparent.
-    // Will also carry the name of show, color and its respective rank.
+    // A node will contain the its left, right, parent, color, name and rank.
     Node(string showName, int r){
 
       left=nullptr;
       right=nullptr;
       parent= nullptr;
-      grandparent= nullptr;
-      uncle=nullptr;
       name = showName;
       color = true; // Insert it as red
 
-      rank = r;
+      rank = r; // Rank is the number of matches it contains with other shows/ movies.
     }
   };
 
-  class RedBlackTree{
+  //This class will allow for the construction of a red black tree.
+  class RedBlackTree {
+    public:
 
-    // Red black tree has a root we can check and will build from root
-  public:
-    Node *root;
-    RedBlackTree(){
-      root=nullptr;
-    }
+        Node *root;
 
-    //This insert will add a specific node to the tree based on recom value
-    void insert(string name, int r){
-
-      this->root = helperInsert( this->root ,name ,r);
-
-    }
-
-    // This will allow the RedBlackTree to get top k recoms, and sends it to top k for orderedmap
-    vector<string>searchTopK(int k) {
-      vector<string> result;
-      int count =0;
-      helperPostOrder(this->root, k, result, count);
-
-      return result;
-    }
-
-
-
-  private:
-
-    //This helperPostOrder will check top k and stop checking rest
-    void helperPostOrder(Node* helpRoot, int k, vector<string>& result, int& count) {
-
-      if (helpRoot==nullptr || count>=k) {
-        return;
-      }
-
-      helperPostOrder(helpRoot->right,k, result, count);
-
-      if (result.size()<k) {
-        result.push_back(helpRoot->name);
-        count++;
-      }
-
-      helperPostOrder(helpRoot->left,k, result, count);
-
-
-    }
-
-
-    // Allows for insert to check if it keeps the proporties of a red black tree
-    Node* helperInsert(Node* helpRoot, string name, int r) {
-
-        if (helpRoot==nullptr){
-            return new Node(name, r);
-        }
-        
-        //Updates grandparents, uncles and parents when inserting to the left
-        else if(r <helpRoot->rank){
-
-            
-            if (helpRoot->parent!=nullptr){
-
-            helpRoot->grandparent = helpRoot->parent;
-            if(helpRoot->grandparent->right == helpRoot->parent){
-                helpRoot->uncle= helpRoot->grandparent->left;
-            }
-            else{
-                helpRoot->uncle= helpRoot->grandparent->right;
-            }
-
-            }
-
-                helpRoot->parent = helpRoot;
-                helpRoot->left = helperInsert(helpRoot->left, name, r);
-        }
-        
-        //Updates grandparents, uncles and parents when inserting to the right
-        else if(r>helpRoot->rank) {
-          if (helpRoot->parent!=nullptr){
-
-            helpRoot->grandparent = helpRoot->parent;
-            if(helpRoot->grandparent->right == helpRoot->parent){
-              helpRoot->uncle= helpRoot->grandparent->left;
-            }
-            else{
-              helpRoot->uncle= helpRoot->grandparent->right;
-            }
-          }
-
-          helpRoot->parent = helpRoot;
-          helpRoot->right = helperInsert(helpRoot->right, name, r);
-          
-        }
-        
-        //This should not run but just in case
-        else{
-            cout << "This should not run" << endl;
-            if (helpRoot->parent!=nullptr){
-
-                helpRoot->grandparent = helpRoot->parent;
-                if(helpRoot->grandparent->right == helpRoot->parent){
-                    helpRoot->uncle= helpRoot->grandparent->left;
-                }
-                else{
-                    helpRoot->uncle= helpRoot->grandparent->right;
-                }
-
-            }
-
-            
+        //Constructor for the red black tree, will initialize the root to nullptr.
+        RedBlackTree(){
+            root = nullptr;
         }
 
-        //If parent's color is red something must be done
-        if (helpRoot->parent->color == true){
-            if(helpRoot->uncle == nullptr){
+        //Breaks tree if not used.
+        ~RedBlackTree() {
+            deleteEach(root);
+        }
 
-                if(helpRoot->grandparent->right == helpRoot->parent){
-                    if(helpRoot->parent->right == helpRoot){
-                        // Right right case
-                        return leftRotate(helpRoot->grandparent);
-                    }
-                    else{
-                        // Right left case
-                        helpRoot->left =leftRotate(helpRoot->grandparent->left);
-                        return rightRotate(helpRoot->grandparent);
-                    }
-    
-                }
+        //This function will insert a node into the red black tree, and will run fixViolation to fix the tree if needed.
+        void insert(string name, int rank) {
 
-                else{
-                    if(helpRoot->parent->left == helpRoot){
-                        // Left left case
-                        return rightRotate(helpRoot->grandparent);
-                    }
-    
-    
-                    else{
-                        // Left right case
-                        helpRoot->right =rightRotate(helpRoot->grandparent->right);
-                        return leftRotate(helpRoot->grandparent);
-                    }
-                }
-    
+            Node *inserted = nullptr;
+            root = insertHelper(root, nullptr, name, rank, inserted);
+            fixViolation(inserted);
+
+        }
+
+        //This search function will search for the top K shows based on the number of matches it has with the user input.
+        vector<string> searchTopK(int k) {
+            vector<string> result;
+            inOrderReverse(root, result, k);
+            return result;
+        }
+
+    private:
+
+        //This function will insert a node into the red black tree, and will return the root of the tree.
+        Node* insertHelper(Node* root, Node* parent, string name, int rank, Node*& inserted) {
+
+            if (root == nullptr) {
+                inserted = new Node(name, rank);
+                inserted->parent = parent;
+                return inserted;
             }
 
-            // If uncle is red we need to simply flip colors
-            else if (helpRoot->uncle->color == true){
-                return flipColors(helpRoot);
-            }
-
-            //If uncle is black or nullptr, will need to check if black
+            if (rank < root->rank) {
+                root->left = insertHelper(root->left, root, name, rank, inserted);
+            } 
             else {
-                // If this runs this means that uncle is black
-                if(helpRoot->grandparent->right == helpRoot->parent){
-                    if(helpRoot->parent->right == helpRoot){
-                        // Right right case
-                        return leftRotate(helpRoot->grandparent);
-                    }
-                    else{
-                        // Right left case
-                        helpRoot->left =leftRotate(helpRoot->grandparent->left);
-                        return rightRotate(helpRoot->grandparent);
-                    }
-  
-                }
-                else{
-                    if(helpRoot->parent->left == helpRoot){
-                    // Left left case
-                    return rightRotate(helpRoot->grandparent);
-                    }
-  
-  
-                    else{
-                        // Left right case
-                        helpRoot->right =rightRotate(helpRoot->grandparent->right);
-                        return leftRotate(helpRoot->grandparent);
-                    }
-                }
+                root->right = insertHelper(root->right, root, name, rank, inserted);
             }
 
+            return root;
+        }
+        //This function will fix the violation of the red black tree, if it is needed.
+        void fixViolation(Node*& node) {
+
+          Node *parent = nullptr;
+          Node *grandParent = nullptr;
+
+          //This will run until we get to root or the color of the node is red or the parent is red.
+          while ((node != root) && (node->color != false) && (node->parent->color == true)) {
+
+              parent = node->parent;
+              grandParent = node->parent->parent;
+
+              //This will set uncle to be right or left of grandParent depending on the position of the parent.
+              if (parent == grandParent->left) {
+
+                  Node *uncle = grandParent->right;
+
+                  //Will flip colors if uncle is red, and set node to grandParent.
+                  if (uncle != nullptr && uncle->color == true) {
+                      grandParent->color = true;
+                      parent->color = false;
+                      uncle->color = false;
+                      node = grandParent;
+                  //If uncle is black, we will rotate the tree to fix it.
+                  } 
+                  else {
+                      //This is a left right case if below runs
+                      if (node == parent->right) {
+                          rotateLeft(root, parent);
+                          node = parent;
+                          parent = node->parent;
+                      }
+                      // Right means its a left left case if above did not run
+                      rotateRight(root, grandParent);
+                      swap(parent->color, grandParent->color);
+                      node = parent;
+                  }
+              } 
+              //This is the right case, if parent is right of grandParent.
+              else {
+
+                  Node *uncle = grandParent->left;
+
+                  if ((uncle != nullptr) && (uncle->color == true)) {
+                      grandParent->color = true;
+                      parent->color = false;
+                      uncle->color = false;
+                      node = grandParent;
+                  } 
+                  
+                  else {
+                      //This is a right left case if below runs
+                      if (node == parent->left) {
+                          rotateRight(root, parent);
+                          node = parent;
+                          parent = node->parent;
+                      }
+                      //This is a right right case if above did not run
+                      rotateLeft(root, grandParent);
+                      swap(parent->color, grandParent->color);
+                      node = parent;
+                  }
+              }
+          }
+          //This will set the root to black if it is red.
+          root->color = false;
+        }
+
+        //This will rotate the tree to the left, and set the new root to nodeRight.
+        void rotateLeft(Node* &root, Node* &node) {
+
+            //nodeRight is what we are making the new root of the subtree.
+            Node* nodeRight = node->right;
+            node->right = nodeRight->left;
+
+            if (node->right != nullptr)
+                node->right->parent = node;
+
+            //Have to update its parent to node's parent (node is old root of subtree)
+            nodeRight->parent = node->parent;
+
+            //If node is root, we have to set the new root to nodeRight.
+            if (node->parent == nullptr)
+                root = nodeRight;
+            //If node is left of parent, we have to set the left of parent to nodeRight.
+            else if (node == node->parent->left)
+                node->parent->left = nodeRight;
+            //If node is right of parent, we have to set the right of parent to nodeRight.
+            else
+                node->parent->right = nodeRight;
+
+            //This will set the left of nodeRight to node, and set the parent of node to nodeRight, ending the rotation.
+            nodeRight->left = node;
+            node->parent = nodeRight;
+        }
+
+        //This will rotate the tree to the right, and set the new root to nodeLeft.
+        void rotateRight(Node* &root, Node* &node) {
+            //nodeLeft is what we are making the new root of the subtree.
+            Node* nodeLeft = node->left;
+            node->left = nodeLeft->right;
+
+            if (node->left != nullptr)
+                node->left->parent = node;
+            //Have to update its parent to node's parent (node is old root of subtree)
+            nodeLeft->parent = node->parent;
+
+            //If node is root, we have to set the new root to nodeLeft.
+            if (node->parent == nullptr)
+                root = nodeLeft;
+            //If node is left of parent, we have to set the left of parent to nodeLeft.
+            else if (node == node->parent->left)
+                node->parent->left = nodeLeft;
+            //If node is right of parent, we have to set the right of parent to nodeLeft.
+            else
+                node->parent->right = nodeLeft;
+
+            //This will set the right of nodeLeft to node, and set the parent of node to nodeLeft, ending the rotation.
+            nodeLeft->right = node;
+            node->parent = nodeLeft;
+        }
+
+        
+        //Prints the revese inorder traversal of the tree, and will stop when it reaches k elements.
+      //This will be used to get the top K shows based on the number of matches it has with the user input.
+        void inOrderReverse(Node* node, vector<string>& result, int k) {
+
+          if (node == nullptr || result.size() >= k) return;
+
+          inOrderReverse(node->right, result, k);
+
+          if (result.size() < k)
+              result.push_back(node->name);
           
-        }
-
-      
-    }
-
-    // This flip colors so that gp is red, uncle black and parent black
-    Node* flipColors(Node* helpRoot){
-
-      helpRoot->grandparent->color = true;
-
-      if(helpRoot->grandparent== root){
-        helpRoot->grandparent->color= false;
+          inOrderReverse(node->left, result, k);
       }
 
-      helpRoot->parent->color= false;
-      helpRoot->uncle->color= false;
+      //This will recursively delete each node in the tree.
+      void deleteEach(Node* node) {
+          if (node == nullptr){
+            return;
+          } 
 
-    }
+          deleteEach(node->left);
+          deleteEach(node->right);
 
-    Node* rightRotate(Node* helpRoot){
-      // Get value left and the value that could be to that right
-      Node* lowest = helpRoot->left;
-      Node* grandChild = lowest->right;
-
-      // Preform the rotation
-      lowest->right = helpRoot;
-      helpRoot->left = grandChild;
-
-      //Updating the parent of each node
-      lowest->parent = helpRoot->parent;
-      helpRoot->parent = lowest;
-
-      if (grandChild != nullptr) {
-        grandChild->parent = helpRoot;
+          delete node;
       }
-
-      // This will update the grandparent and uncle pointed for each node
-      if (lowest->parent != nullptr) {
-        lowest->grandparent = lowest->parent->parent;
-
-        if (lowest->grandparent != nullptr) {
-          if (lowest->grandparent->left == lowest->parent) {
-            lowest->uncle = lowest->grandparent->right;
-          } else {
-            lowest->uncle = lowest->grandparent->left;
-          }
-        }
-      } else {
-        lowest->grandparent = nullptr;
-        lowest->uncle = nullptr;
-      }
-
-      helpRoot->grandparent = lowest->parent;
-
-      //Updates color for all involved values
-      lowest->color = false;
-      helpRoot->color = true;
-      if (lowest->left!= nullptr) {
-        lowest->left->color = true;
-      }
-
-      // Returns the value on top now
-      return lowest;
-
-    }
-
-    Node* leftRotate(Node* helpRoot){
-      //Get the value right and gets a value that could be left of that
-      Node* highest= helpRoot->right;
-      Node* grandChild = highest->left;
-
-      //Preforms the rotation
-      highest->left = helpRoot;
-      helpRoot->right = grandChild;
-
-      //Updates parent's values
-      highest->parent = helpRoot->parent;
-      helpRoot->parent = highest;
-
-      if (grandChild != nullptr) {
-        grandChild->parent = helpRoot;
-      }
-
-      //Updates the grandparent's values
-      if (highest->parent != nullptr) {
-        highest->grandparent = highest->parent->parent;
-
-        if (highest->grandparent != nullptr) {
-          if (highest->grandparent->left == highest->parent) {
-            highest->uncle = highest->grandparent->right;
-          } else {
-            highest->uncle = highest->grandparent->left;
-          }
-        }
-      } else {
-        highest->grandparent = nullptr;
-        highest->uncle = nullptr;
-      }
-
-      helpRoot->grandparent = highest->parent;
-
-      //Updates the colors of each node
-      highest->color = false;
-      helpRoot->color = true;
-      if (highest->right!= nullptr) {
-        highest->right->color = true;
-      }
-
-      //Returns new top
-      return highest;
-    }
 
 
   };
@@ -348,20 +250,19 @@ public:
   }
 
 private:
-
+  //This vector will hold the show's names and the number of mactehs it has with the user input.
   vector<pair<string ,int>> recom;
+
+  //This tree will organize the shows based on the number of matches it has with the user input in a red black tree structure.
   RedBlackTree myRBT;
 
   //Construction for redBlackTree, will insert a bunch of nodes into myRBT
-  Node* buildRedBlackTree() {
+  void buildRedBlackTree() {
 
     for (int i=0; i<recom.size(); i++) {
       myRBT.insert(recom[i].first,recom[i].second);
     }
   }
-
-
-
 
 
   // This makes the recomVector, which gets show name and initializes all to 0.
@@ -382,20 +283,21 @@ private:
       for(int j=0; j<shows.size(); j++){
 
         //For each vector with in that vector
-        for(int k=0; k<shows[j].size(); k++){
+        for(int k=1; k<shows[j].size(); k++){
           vector<string>& category = shows[j][k];
           string& keyword = user[i];
 
           //Will look if shows contains what the user speciifc, add 1 if it does
-          auto it = find(category.begin(), category.end(), keyword[i]);
+          auto it = find(category.begin(), category.end(), keyword);
+
           if(it!=category.end()){
-            int index= distance(category.begin(), it);
-            recom[index] = {recom[index].first, recom[index].second+1};
+            recom[j].second+=1;
           }
 
         }
       }
     }
+    
   }
 
 };
