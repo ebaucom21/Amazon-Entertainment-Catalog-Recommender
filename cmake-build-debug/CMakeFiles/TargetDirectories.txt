@@ -1,4 +1,5 @@
 C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir
-C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/Tester.dir
+C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/package.dir
+C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/package_source.dir
 C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-debug/CMakeFiles/rebuild_cache.dir

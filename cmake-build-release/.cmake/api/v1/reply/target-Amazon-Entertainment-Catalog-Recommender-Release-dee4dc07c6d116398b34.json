@@ -45,7 +45,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -fdiagnostics-color=always"
+					"fragment" : "-O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always"
 				}
 			],
 			"includes" : 
@@ -80,7 +80,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -89,22 +89,22 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-graphics-d.a\"",
+				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-graphics.a\"",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-audio-d.a\"",
+				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-audio.a\"",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-window-d.a\"",
+				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-window.a\"",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-system-d.a\"",
+				"fragment" : "\"C:\\Users\\scien\\CLionProjects\\SMFL seperate\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-system.a\"",
 				"role" : "libraries"
 			},
 			{
@@ -151,7 +151,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "OrderedMap.cpp",
+			"path" : "Balanced-RB.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

@@ -63,8 +63,8 @@ build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.ob
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
   OBJECT_FILE_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
 
-build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/OrderedMap.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Release C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/OrderedMap.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
-  DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\OrderedMap.cpp.obj.d
+build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-RB.cpp.obj: CXX_COMPILER__Amazon-Entertainment-Catalog-Recommender_unscanned_Release C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/Balanced-RB.cpp || cmake_object_order_depends_target_Amazon-Entertainment-Catalog-Recommender
+  DEP_FILE = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir\Balanced-RB.cpp.obj.d
   FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -isystem "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Amazon-Entertainment-Catalog-Recommender.dir
@@ -85,7 +85,7 @@ build CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.
 #############################################
 # Link the executable Amazon-Entertainment-Catalog-Recommender.exe
 
-build Amazon-Entertainment-Catalog-Recommender.exe: CXX_EXECUTABLE_LINKER__Amazon-Entertainment-Catalog-Recommender_Release CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/OrderedMap.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj | C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system.a
+build Amazon-Entertainment-Catalog-Recommender.exe: CXX_EXECUTABLE_LINKER__Amazon-Entertainment-Catalog-Recommender_Release CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/main.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-KD.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/Balanced-RB.cpp.obj CMakeFiles/Amazon-Entertainment-Catalog-Recommender.dir/CSV-Extractor.cpp.obj | C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window.a C$:/Users/scien/CLionProjects/SMFL$ seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system.a
   FLAGS = -O3 -DNDEBUG
   LINK_FLAGS = -Wl,--stack,16777216
   LINK_LIBRARIES = "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-graphics.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-audio.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-window.a"  "C:/Users/scien/CLionProjects/SMFL seperate/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/libsfml-system.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -96,51 +96,29 @@ build Amazon-Entertainment-Catalog-Recommender.exe: CXX_EXECUTABLE_LINKER__Amazo
   TARGET_IMPLIB = libAmazon-Entertainment-Catalog-Recommender.dll.a
   TARGET_PDB = Amazon-Entertainment-Catalog-Recommender.exe.dbg
 
-# =============================================================================
-# Object build statements for EXECUTABLE target Tester
+
+#############################################
+# Utility command for package
+
+build CMakeFiles/package.util: CUSTOM_COMMAND all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\scien\CLionProjects\Amazon-Entertainment-Catalog-Recommender\cmake-build-release && "C:\Program Files\JetBrains\CLion 2024.2.0.1\bin\cmake\win\x64\bin\cpack.exe" --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build package: phony CMakeFiles/package.util
 
 
 #############################################
-# Order-only phony target for Tester
+# Utility command for package_source
 
-build cmake_object_order_depends_target_Tester: phony || .
+build CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\scien\CLionProjects\Amazon-Entertainment-Catalog-Recommender\cmake-build-release && "C:\Program Files\JetBrains\CLion 2024.2.0.1\bin\cmake\win\x64\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-release/CPackSourceConfig.cmake"
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
 
-build CMakeFiles/Tester.dir/Balanced-KD.cpp.obj: CXX_COMPILER__Tester_unscanned_Release C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/Balanced-KD.cpp || cmake_object_order_depends_target_Tester
-  DEP_FILE = CMakeFiles\Tester.dir\Balanced-KD.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Tester.dir
-  OBJECT_FILE_DIR = CMakeFiles\Tester.dir
-
-build CMakeFiles/Tester.dir/CSV-Extractor.cpp.obj: CXX_COMPILER__Tester_unscanned_Release C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/CSV-Extractor.cpp || cmake_object_order_depends_target_Tester
-  DEP_FILE = CMakeFiles\Tester.dir\CSV-Extractor.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Tester.dir
-  OBJECT_FILE_DIR = CMakeFiles\Tester.dir
-
-build CMakeFiles/Tester.dir/KD-Tester.cpp.obj: CXX_COMPILER__Tester_unscanned_Release C$:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/KD-Tester.cpp || cmake_object_order_depends_target_Tester
-  DEP_FILE = CMakeFiles\Tester.dir\KD-Tester.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Tester.dir
-  OBJECT_FILE_DIR = CMakeFiles\Tester.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target Tester
-
-
-#############################################
-# Link the executable Tester.exe
-
-build Tester.exe: CXX_EXECUTABLE_LINKER__Tester_Release CMakeFiles/Tester.dir/Balanced-KD.cpp.obj CMakeFiles/Tester.dir/CSV-Extractor.cpp.obj CMakeFiles/Tester.dir/KD-Tester.cpp.obj
-  FLAGS = -O3 -DNDEBUG
-  LINK_FLAGS = -Wl,--stack,16777216
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\Tester.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = Tester.exe
-  TARGET_IMPLIB = libTester.dll.a
-  TARGET_PDB = Tester.exe.dbg
+build package_source: phony CMakeFiles/package_source.util
 
 
 #############################################
@@ -170,8 +148,6 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build Amazon-Entertainment-Catalog-Recommender: phony Amazon-Entertainment-Catalog-Recommender.exe
 
-build Tester: phony Tester.exe
-
 # =============================================================================
 # Folder targets.
 
@@ -180,12 +156,7 @@ build Tester: phony Tester.exe
 #############################################
 # Folder: C:/Users/scien/CLionProjects/Amazon-Entertainment-Catalog-Recommender/cmake-build-release
 
-build all: phony Amazon-Entertainment-Catalog-Recommender.exe Tester.exe
-
-# =============================================================================
-# Unknown Build Time Dependencies.
-# Tell Ninja that they may appear as side effects of build rules
-# otherwise ordered by order-only dependencies.
+build all: phony Amazon-Entertainment-Catalog-Recommender.exe
 
 # =============================================================================
 # Built-in targets
