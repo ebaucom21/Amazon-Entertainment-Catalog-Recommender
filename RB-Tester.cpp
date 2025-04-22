@@ -6,7 +6,7 @@ Use this to test the functionality of the OrderedMap class with the CSV data.
 #include <iostream>
 #include <vector>
 #include <string>
-#include "OrderedMap.cpp"
+#include "Balanced-RB.cpp"
 #include "CSV-Extractor.cpp"
 using namespace std;
 
@@ -29,7 +29,7 @@ int main() {
 
     // The ordered map is made here and we go trough the top 5 recommendations made
     cout << "Creating ordered map...\n";
-    ordered_map myMap( data , target);
+    RedBlackTree myMap( data , target);
     cout<< "Ordered map created successfully.\n";
     cout<< "Finding top 5 recommendations...\n";
 
