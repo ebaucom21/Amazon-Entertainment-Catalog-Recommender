@@ -17,7 +17,7 @@ class csvExtraction {
         5 - Genre
         */
         vector<vector<vector<string>>> extractData() {
-            return extractDataHelper("./amazon_prime_titles.csv");
+            return extractDataHelper("../amazon_prime_titles.csv");
         }
     private:
         vector<vector<vector<string>>> extractDataHelper(const string& filename) {
