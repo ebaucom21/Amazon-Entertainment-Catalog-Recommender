@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class ordered_map {
+class RedBlackTree {
 public:
 
   class Node{
@@ -31,19 +31,19 @@ public:
     }
   };
 
-  //This class will allow for the construction of a red black tree.
-  class RedBlackTree {
+  //This class will allow for the construction of the red black tree maker.
+  class RedBlackTreeMaker {
     public:
 
         Node *root;
 
-        //Constructor for the red black tree, will initialize the root to nullptr.
-        RedBlackTree(){
+        //Constructor for the red black tree maker, will initialize the root to nullptr.
+        RedBlackTreeMaker(){
             root = nullptr;
         }
 
         //Breaks tree if not used.
-        ~RedBlackTree() {
+        ~RedBlackTreeMaker() {
             deleteEach(root);
         }
 
@@ -207,7 +207,7 @@ public:
 
         
         //Prints the revese inorder traversal of the tree, and will stop when it reaches k elements.
-      //This will be used to get the top K shows based on the number of matches it has with the user input.
+        //This will be used to get the top K shows based on the number of matches it has with the user input.
         void inOrderReverse(Node* node, vector<string>& result, int k) {
 
           if (node == nullptr || result.size() >= k) return;
@@ -240,8 +240,8 @@ public:
     return myRBT.searchTopK(k);
   }
 
-  //Constructor for ordered map needs the data and user recom in order to be made.
-  ordered_map(vector<vector<vector<string>>> data, vector<string> user){
+  //Constructor for RedBlackTree, will take in the data and user input.
+  RedBlackTree(vector<vector<vector<string>>> data, vector<string> user){
 
     makeRecomVector(data);
     getRecomRating(user,data);
@@ -254,7 +254,7 @@ private:
   vector<pair<string ,int>> recom;
 
   //This tree will organize the shows based on the number of matches it has with the user input in a red black tree structure.
-  RedBlackTree myRBT;
+  RedBlackTreeMaker myRBT;
 
   //Construction for redBlackTree, will insert a bunch of nodes into myRBT
   void buildRedBlackTree() {
