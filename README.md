@@ -1,11 +1,13 @@
 <h1 align="center" id="title">Amazon Entertainment Catalog Recommender</h1>
 
-<p id="description">A recommendation engine for finding a new show on Amazon prime based on a short questionnaire. This Recommendation engine will employ the use of both a B+ tree and a KD-Tree in order to compare the functionality speed and accuracy of the two data structures in recommendations.</p>
+<p id="description">A recommendation engine for finding a new show on Amazon prime based on a short questionnaire. This Recommendation engine will employ the use of both a Red-Black tree and a KD-Tree in order to compare the functionality speed and accuracy of the two data structures in recommendations.</p>
 
 <p align="center"><img src="https://img.shields.io/github/contributors/ebaucom21/Amazon-Entertainment-Catalog-Recommender" alt="shields"><img src="https://img.shields.io/github/commit-activity/w/ebaucom21/Amazon-Entertainment-Catalog-Recommender" alt="shields"></p>
 
 <h2>🍰 Installing SFML to run code:</h2>
-1. Go to https://www.sfml-dev.org/download/sfml/2.5.1 and download the SFML package library that corresponds to your system. For example, a 64-bit machine running MinGW, you will download the package here:
+**NOTE: This project was written in Clion, these steps will work for Clion garunteed. Other IDE's are untested so use to your discretion.**
+
+1. Go to https://www.sfml-dev.org/download/sfml/2.5.1 and download the SFML package library that corresponds to your system(either GCC 7.3.0 MinGW (SEH) - 64-bit or GCC 7.3.0 MinGW (DW2) - 32-bit). For example, a 64-bit machine running MinGW, you will download the package here:
 
 ![image-8c93f29f-e42d-4cf7-9393-a35740412e98](https://github.com/user-attachments/assets/0d6abe19-d047-40e8-baa7-4fe90d3998c1)
 2. Once the download is complete, locate it and extract the zip file somewhere on your computer. It shouldn't matter where you have it, but you must keep it there while running this code.
@@ -14,11 +16,13 @@
 
 ![image-8637238d-ee18-47c8-a054-3505bfa30c61](https://github.com/user-attachments/assets/f2e8ebb8-e3ea-4536-8993-d7706f784170)
 
-4. Copy that path and paste it into the CMakeLists.txt file, replacing the file path that currently exists.
+4. Copy that path and paste it into the CMakeLists.txt file, replacing the file path that currently exists. Make sure the end says "/lib/cmake/SFML". Be sure to replace all back-slashes ( \ ) with forward-slashes ( / ).
 
-<img width="769" alt="Screenshot 2025-04-21 170435" src="https://github.com/user-attachments/assets/7a8424e8-c747-4ebb-8f7e-4832139e5c44" />
+<img width="804" alt="Screenshot 2025-04-21 235903" src="https://github.com/user-attachments/assets/37c11797-3c2f-4022-b900-fe5b299423f8" />
 
-5. After this step, in some instances your IDE may not automatically reset the cache and reload the project. In order to do so manually, go to: Tools > CMake > Reset Cache and Reload Project
+
+
+6. After this step, in some instances your IDE may not automatically reset the cache and reload the project. In order to do so manually, go to: Tools > CMake > Reset Cache and Reload Project
 
 ![image-c385e768-6885-4504-8131-cc35694ac54e](https://github.com/user-attachments/assets/ae5e695a-6c64-4ec5-87e9-23cdf21f4067)
 
